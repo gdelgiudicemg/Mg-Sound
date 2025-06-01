@@ -1,9 +1,19 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Calendar, ArrowRight } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 
 export const CTA: React.FC = () => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  // Aggiungiamo un controllo di sicurezza
+  const locale = i18n && i18n.language ? i18n.language : 'it';
+  
+  // Stato per memorizzare l'URL di Calendly
+  const [calendlyUrl, setCalendlyUrl] = useState(`https://calendly.com/dxbeetz?locale=${locale}`);
+  
+  // Aggiorna l'URL quando cambia la lingua
+  useEffect(() => {
+    setCalendlyUrl(`https://calendly.com/dxbeetz?locale=${locale}`);
+  }, [locale]);
   
   return (
     <section className="py-16 bg-black text-white">
@@ -15,7 +25,9 @@ export const CTA: React.FC = () => {
           </p>
           
           <a 
-            href="https://calendly.com/dxbeetz" 
+            href={calendlyUrl}
+            target="_blank"
+            rel="noopener noreferrer"
             className="inline-flex items-center bg-yellow-500 text-black font-bold py-3 px-6 rounded-md hover:bg-yellow-400 transition-colors"
           >
             <Calendar className="mr-2 h-5 w-5" />

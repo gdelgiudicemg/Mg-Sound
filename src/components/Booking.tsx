@@ -1,6 +1,7 @@
 import React from 'react';
 import { Calendar } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
+import CalendlyEmbed from './CalendlyEmbed';
 
 export const Booking: React.FC = () => {
   const { t } = useTranslation();
@@ -20,15 +21,8 @@ export const Booking: React.FC = () => {
             <Calendar className="text-yellow-500 mr-3" />
             <h3 className="text-xl font-semibold">{t('availability_calendar')}</h3>
           </div>
-          <div className="calendly-container p-0 h-[700px]">
-            <iframe 
-              src="https://calendly.com/dxbeetz" 
-              width="100%" 
-              height="100%" 
-              frameBorder="0"
-              title="Calendly Booking"
-              className="block"
-            ></iframe>
+          <div className="calendly-container p-0">
+            <CalendlyEmbed height="700px" />
           </div>
         </div>
       </div>
