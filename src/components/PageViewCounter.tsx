@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Eye } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 
 interface PageViewCounterProps {
   className?: string;
@@ -7,6 +8,7 @@ interface PageViewCounterProps {
 
 export const PageViewCounter: React.FC<PageViewCounterProps> = ({ className = '' }) => {
   const [viewCount, setViewCount] = useState<number>(0);
+  const { t } = useTranslation();
   
   useEffect(() => {
     // Recupera il conteggio attuale dal localStorage
@@ -41,7 +43,7 @@ export const PageViewCounter: React.FC<PageViewCounterProps> = ({ className = ''
     <div className={`flex items-center ${className}`}>
       <Eye className="h-5 w-5 text-yellow-400 mr-2" />
       <div className="flex flex-col">
-        <span className="text-sm text-gray-300">Visite totali</span>
+        <span className="text-sm text-gray-300">{t('total_visits')}</span>
         <span className="text-xl font-bold text-white">{viewCount.toLocaleString()}</span>
       </div>
     </div>

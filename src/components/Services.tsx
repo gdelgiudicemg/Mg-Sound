@@ -1,6 +1,7 @@
 import React from 'react';
 import { loadStripe } from './StripeLoader';
 import { Music, Headphones, Film, Wand2 } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 
 interface ServiceCardProps {
   title: string;
@@ -11,6 +12,7 @@ interface ServiceCardProps {
 }
 
 const ServiceCard: React.FC<ServiceCardProps> = ({ title, price, productId, icon, description }) => {
+  const { t } = useTranslation();
   const handleCheckout = async () => {
     try {
       const stripe = await loadStripe();
@@ -73,54 +75,53 @@ const ServiceCard: React.FC<ServiceCardProps> = ({ title, price, productId, icon
         onClick={handleCheckout}
         className="w-full bg-yellow-500 text-white py-2 px-4 rounded-md hover:bg-yellow-600 transition-colors font-medium"
       >
-        Acquista
+        {t('buy')}
       </button>
     </div>
   );
 };
 
 export const Services: React.FC = () => {
+  const { t } = useTranslation();
+  
   return (
     <section id="services" className="py-16 bg-gray-100">
       <div className="container mx-auto px-4 md:px-6">
         <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold mb-4">I Nostri Servizi</h2>
+          <h2 className="text-3xl font-bold mb-4">{t('services_title')}</h2>
           <p className="text-lg text-gray-700 max-w-2xl mx-auto">
-            Offriamo una vasta gamma di servizi professionali per soddisfare tutte le tue esigenze audio e video.
+            {t('services_description')}
           </p>
         </div>
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
           <ServiceCard 
-            title="Mastering di un brano" 
+            title={t('service_mastering')}
             price="150€" 
             productId="prod_SPmFjYuZI1rc9e"
             icon={<Headphones className="h-8 w-8 text-yellow-600" />}
-            description="Perfeziona il tuo brano con un mastering professionale"
+            description={t('mastering_description')}
           />
-          
           <ServiceCard 
-            title="Creazione base musicale" 
-            price="100€" 
-            productId="prod_SPmGati39KVZI8"
+            title={t('service_recording')}
+            price="200€" 
+            productId="prod_SPmFjYuZI1rc9e"
             icon={<Music className="h-8 w-8 text-yellow-600" />}
-            description="Basi musicali su misura per le tue esigenze"
+            description={t('recording_description')}
           />
-          
           <ServiceCard 
-            title="Creazione di un beat" 
-            price="70€" 
-            productId="prod_SPmIUP8eDTymmc"
+            title={t('service_beats')}
+            price="100€" 
+            productId="prod_SPmFjYuZI1rc9e"
             icon={<Wand2 className="h-8 w-8 text-yellow-600" />}
-            description="Beat unici e originali per i tuoi progetti"
+            description={t('beats_description')}
           />
-          
           <ServiceCard 
-            title="Montaggio video fino a 10 min" 
-            price="300€" 
-            productId="prod_SPmJdnyC3b1cLA"
+            title={t('service_video')}
+            price="250€" 
+            productId="prod_SPmFjYuZI1rc9e"
             icon={<Film className="h-8 w-8 text-yellow-600" />}
-            description="Editing video professionale per qualsiasi contenuto"
+            description={t('video_description')}
           />
         </div>
       </div>

@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X, Music } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
+import { LanguageSelector } from './LanguageSelector';
 
 export const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const { t } = useTranslation();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -32,23 +35,25 @@ export const Navbar: React.FC = () => {
           </a>
 
           {/* Desktop Menu */}
-          <div className="hidden md:flex space-x-8">
+          <div className="hidden md:flex items-center space-x-8">
             <a href="#about" className="text-white hover:text-yellow-400 transition-colors">
-              Chi Siamo
+              {t('about')}
             </a>
             <a href="#booking" className="text-white hover:text-yellow-400 transition-colors">
-              Prenotazioni
+              {t('booking')}
             </a>
             <a href="#services" className="text-white hover:text-yellow-400 transition-colors">
-              Servizi
+              {t('services')}
             </a>
             <a href="#contact" className="text-white hover:text-yellow-400 transition-colors">
-              Contatti
+              {t('contact')}
             </a>
+            <LanguageSelector />
           </div>
 
           {/* Mobile Menu Button */}
-          <div className="md:hidden">
+          <div className="md:hidden flex items-center">
+            <LanguageSelector className="mr-4" />
             <button 
               onClick={() => setIsOpen(!isOpen)}
               className="text-white p-2"
@@ -67,28 +72,28 @@ export const Navbar: React.FC = () => {
                 className="text-white hover:text-yellow-400 transition-colors"
                 onClick={() => setIsOpen(false)}
               >
-                Chi Siamo
+                {t('about')}
               </a>
               <a 
                 href="#booking" 
                 className="text-white hover:text-yellow-400 transition-colors"
                 onClick={() => setIsOpen(false)}
               >
-                Prenotazioni
+                {t('booking')}
               </a>
               <a 
                 href="#services" 
                 className="text-white hover:text-yellow-400 transition-colors"
                 onClick={() => setIsOpen(false)}
               >
-                Servizi
+                {t('services')}
               </a>
               <a 
                 href="#contact" 
                 className="text-white hover:text-yellow-400 transition-colors"
                 onClick={() => setIsOpen(false)}
               >
-                Contatti
+                {t('contact')}
               </a>
             </div>
           </div>

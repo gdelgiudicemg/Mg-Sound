@@ -1,8 +1,11 @@
 import React from 'react';
 import { Phone, Mail, MapPin, Music, Facebook, Instagram } from 'lucide-react';
 import { PageViewCounter } from './PageViewCounter';
+import { useTranslation } from 'react-i18next';
 
 export const Footer: React.FC = () => {
+  const { t } = useTranslation();
+  
   return (
     <footer id="contact" className="bg-gray-900 text-white py-12">
       <div className="container mx-auto px-4 md:px-6">
@@ -13,30 +16,34 @@ export const Footer: React.FC = () => {
               <span className="text-xl font-bold">MG Sound</span>
             </div>
             <p className="text-gray-400 mb-4">
-              Il tuo studio professionale per produzione Audio & Video a Göppingen, Germania.
+              {t('about_description')}
             </p>
             <p className="text-gray-400 mb-4">
-              Fondatori: Giuseppe D'Ischia e Gino D'Ischia
+              {t('about_founders')}
             </p>
             
             {/* Social Media Icons */}
             <div className="flex space-x-4 mt-4">
-              <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:text-yellow-400 transition-colors">
-                <Facebook className="h-8 w-8" />
+              <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="hover:text-yellow-400 transition-colors">
+                <Facebook className="h-6 w-6" />
               </a>
-              <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="text-pink-500 hover:text-yellow-400 transition-colors">
-                <Instagram className="h-8 w-8" />
+              <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="hover:text-yellow-400 transition-colors">
+                <Instagram className="h-6 w-6" />
               </a>
-              <a href="https://tiktok.com" target="_blank" rel="noopener noreferrer" className="text-white hover:text-yellow-400 transition-colors">
-                <svg className="h-8 w-8" viewBox="0 0 24 24" fill="currentColor" stroke="none">
-                  <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z" />
+              <a href="https://tiktok.com" target="_blank" rel="noopener noreferrer" className="hover:text-yellow-400 transition-colors">
+                {/* TikTok non è disponibile in lucide-react, quindi creiamo un'icona personalizzata */}
+                <svg className="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M9 12a4 4 0 1 0 0 8 4 4 0 0 0 0-8z" />
+                  <path d="M15 8a4 4 0 0 0 4 4V8h-4Z" />
+                  <path d="M15 2v14" />
+                  <path d="M9 16v-4" />
                 </svg>
               </a>
             </div>
           </div>
           
           <div>
-            <h3 className="text-lg font-bold mb-4">Contatti</h3>
+            <h3 className="text-lg font-bold mb-4">{t('contact')}</h3>
             <ul className="space-y-3">
               <li className="flex items-center">
                 <Phone className="h-5 w-5 text-yellow-400 mr-2" />
@@ -50,26 +57,26 @@ export const Footer: React.FC = () => {
               </li>
               <li className="flex items-start">
                 <MapPin className="h-5 w-5 text-yellow-400 mr-2 mt-1" />
-                <span>Göppingen, Germania<br />Aperto solo su appuntamento</span>
+                <span>Göppingen, Germania<br />{t('footer_open')}</span>
               </li>
             </ul>
           </div>
           
           <div>
-            <h3 className="text-lg font-bold mb-4">Collegamenti Rapidi</h3>
+            <h3 className="text-lg font-bold mb-4">{t('footer_quick_links')}</h3>
             <ul className="space-y-2">
               <li>
-                <a href="#about" className="hover:text-yellow-400 transition-colors">Chi Siamo</a>
+                <a href="#about" className="hover:text-yellow-400 transition-colors">{t('about')}</a>
               </li>
               <li>
-                <a href="#services" className="hover:text-yellow-400 transition-colors">Servizi</a>
+                <a href="#services" className="hover:text-yellow-400 transition-colors">{t('services')}</a>
               </li>
               <li>
-                <a href="#booking" className="hover:text-yellow-400 transition-colors">Prenotazioni</a>
+                <a href="#booking" className="hover:text-yellow-400 transition-colors">{t('booking')}</a>
               </li>
               <li>
                 <a href="https://calendly.com/dxbeetz" className="hover:text-yellow-400 transition-colors">
-                  Consulto Gratuito
+                  {t('footer_free_consult')}
                 </a>
               </li>
             </ul>
@@ -78,7 +85,7 @@ export const Footer: React.FC = () => {
         
         <div className="border-t border-gray-800 mt-12 pt-8 text-center">
           <p className="text-gray-500">
-            &copy; {new Date().getFullYear()} MG Sound Studio. Tutti i diritti riservati.
+            &copy; {new Date().getFullYear()} MG Sound Studio. {t('footer_rights')}
           </p>
           <div className="flex justify-center mt-4">
             <PageViewCounter />
